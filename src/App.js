@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from 'react';
+import Widget from './Widget';
 
 function App() {
+  const [items, setItems] = useState([
+    {
+      value: 'DV',
+      label: 'Darth Vader',
+    },
+    {
+      value: 'OWK',
+      label: 'Obi-Wan-Kenobi',
+    },
+    {
+      value: 'LS',
+      label: 'Luke Skywalker',
+    },
+  ]);
+
+  const [submittableItems, setSubmittableItems] = useState([]);
+  const getSelected = useCallback(
+    (newSelected) => {
+      setSubmittableItems(newSelected);
+    },
+    [setSubmittableItems]
+  );
+
+  console.log('Submittable Items 😎', submittableItems);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>React Dual listbox</h1>
+      <Widget items={items} getSelected={getSelected} />
     </div>
   );
 }
+App.whyDidYouRender = true;
 
 export default App;
