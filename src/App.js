@@ -18,12 +18,10 @@ function App() {
   ]);
 
   const [submittableItems, setSubmittableItems] = useState([]);
-  const getSelected = useCallback(
-    (newSelected) => {
-      setSubmittableItems(newSelected);
-    },
-    [setSubmittableItems]
-  );
+
+  const getSelected = (newSelected) => {
+    setSubmittableItems(newSelected);
+  };
 
   console.log('Submittable Items 😎', submittableItems);
   return (

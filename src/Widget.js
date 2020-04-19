@@ -5,25 +5,17 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const Widget = (props) => {
   const { getSelected, items } = props;
-
-  // selected array are the items in the right box
   const [selected, setSelected] = useState([]);
 
-  const onChange = (newSelected) => {
-    if (newSelected.join('') === selected.join('')) return; // nothing to do
+  const onChange = (selected) => {
+    // if (newSelected.join('') === selected.join('')) return; // nothing to do
 
-    setSelected(newSelected);
-    console.log({ items });
-
-    const updatedItems = items.filter((item) =>
-      newSelected.includes(item.value)
-    );
+    setSelected(selected);
+    const updatedItems = items.filter((item) => selected.includes(item.value));
 
     // const updatedItems = items.filter(
     //   (item, i) => item.value === newSelected[i]
     // );
-
-    console.log('onChange', { newSelected, updatedItems });
     getSelected(updatedItems);
   };
 
